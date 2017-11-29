@@ -83,9 +83,9 @@ module.exports = (client) => {
     return text;
   };
 
-  client.loadCommand = (commandName, commandLocation) => {
+  client.loadCommand = (commandName) => {
     try {
-      const props = (commandLocation === undefined ? require(`../commands/${commandName}`) : require(`../commands/${commandLocation}/${commandName}`));
+      const props = require(`../commands/${commandName}`);
       client.log("log", `Loading Command: ${props.help.name}. 👌`);
       if (props.init) {
         props.init(client);

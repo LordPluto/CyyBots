@@ -48,32 +48,18 @@ const init = async () => {
 
   // Here we load **commands** into memory, as a collection, so they're accessible
   // here and everywhere else.
-  const globalCmdFiles = await readdir("./commands/");
-  smug.log("log", `Hibiki loading a total of ${globalCmdFiles.length} global commands.`);
-  globalCmdFiles.forEach(f => {
+  const cmdFiles = await readdir("./commands/");
+  smug.log("log", `Hibiki loading a total of ${cmdFiles.length} commands.`);
+  cmdFiles.forEach(f => {
     if (!f.endsWith(".js")) return;
     const response = smug.loadCommand(f);
     if (response) console.log(response);
   });
-  yandere.log("log", `Yanagi loading a total of ${globalCmdFiles.length} global commands.`);
-  globalCmdFiles.forEach(f => {
+  yandere.log("log", `Yanagi loading a total of ${cmdFiles.length} commands.`);
+  cmdFiles.forEach(f => {
     if (!f.endsWith(".js")) return;
     const response = yandere.loadCommand(f);
     if (response) console.log(response);
-  });
-  const smugCmdFiles = await readdir("./commands/smug/");
-  smug.log("log", `Hibiki loading a total of ${smugCmdFiles.length} personal commands.`);
-  smugCmdFiles.forEach(f => {
-	if (!f.endsWith(".js")) return;
-	const response = smug.loadCommand(f, "smug");
-	if (response) console.log(response);
-  });
-  const yandereCmdFiles = await readdir("./commands/yandere/");
-  yandere.log("log", `Yanagi loading a total of ${yandereCmdFiles.length} personal commands.`);
-  yandereCmdFiles.forEach(f => {
-	if (!f.endsWith(".js")) return;
-	const response = yandere.loadCommand(f, "yandere");
-	if (response) console.log(response);
   });
   
 
